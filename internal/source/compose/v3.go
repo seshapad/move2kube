@@ -366,7 +366,8 @@ func (c *V3Loader) convertToIR(filedir string, composeObject types.Config) (irty
 
 		for index, vol := range composeServiceConfig.Volumes {
 			if isPath(vol.Source) {
-				volumeName := fmt.Sprintf("%s%d", common.VolumePrefix, index)
+				// Volume name is constructed by appending service-name, volume-prefix and an index
+				volumeName := fmt.Sprintf("%s%s%d", name, common.VolumePrefix, index)
 				serviceContainer.VolumeMounts = append(serviceContainer.VolumeMounts, corev1.VolumeMount{
 					Name:      volumeName,
 					MountPath: vol.Target,

@@ -236,7 +236,6 @@ func convertSecretVolumeToCfgMapVolume(vs corev1.Volume) *corev1.Volume {
 }
 
 func convertVolumeBySupportedKind(volume corev1.Volume, cluster collecttypes.ClusterMetadataSpec) (nvolume corev1.Volume) {
-
 	if volume == (corev1.Volume{}) {
 		return corev1.Volume{}
 	}

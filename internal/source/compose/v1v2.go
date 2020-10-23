@@ -247,6 +247,7 @@ func (c *V1V2Loader) convertToIR(filedir string, composeObject *project.Project,
 		if composeServiceConfig.Volumes != nil {
 			for index, vol := range composeServiceConfig.Volumes.Volumes {
 				if isPath(vol.Source) {
+					// Volume name is constructed by appending service-name, volume-prefix and an index
 					volumeName := fmt.Sprintf("%s%d", common.VolumePrefix, index)
 					serviceContainer.VolumeMounts = append(serviceContainer.VolumeMounts, corev1.VolumeMount{
 						Name:      volumeName,
